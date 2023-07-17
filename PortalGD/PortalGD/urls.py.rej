@@ -1,0 +1,7 @@
+diff a/PortalGD/PortalGD/urls.py b/PortalGD/PortalGD/urls.py	(rejected hunks)
+@@ -30,4 +30,5 @@
+     path('api/', include('api.urls')),
+     path('usuario/',include('user.urls')),
+     path('datosmaestros/', include('datosmaestros.api.routers')),
++
+ ]
