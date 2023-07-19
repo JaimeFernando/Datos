@@ -13,9 +13,9 @@ class CatCatalogoViewSet(viewsets.ModelViewSet):
     #Utilizando el Metodo Get podemos listar los Registros
     def get_queryset(self,pk=None):
         if pk is None:
-            return self.get_serializer().Meta.model.objects.filter(esactivo = True)
+            return self.get_serializer().Meta.model.objects.filter(is_active = True)
         else:
-            return self.get_serializer().Meta.model.objects.filter(idcatalogo = pk, esactivo = True).first()
+            return self.get_serializer().Meta.model.objects.filter(idcatalogo = pk, is_active = True).first()
 
     #Aqui se esta sobre escribiendo la funcion, mas no es necesario, esto lo hacemos para que podamos manipular las respuestas y mensajes de cada metodo
     def create(self, request):
@@ -37,7 +37,7 @@ class CatCatalogoViewSet(viewsets.ModelViewSet):
     def destroy(self,request,pk=None):
         catalogo = self.get_queryset().filter(idcatalogo = pk).first()
         if catalogo:
-            catalogo.esactivo = False
+            catalogo.is_active = False
             catalogo.save()
             return Response({'message':'Catalogo Borrado correctamente!'},status=status.HTTP_200_OK)
         return Response({'error':'No existe un Catalogo con esos datos'},status=status.HTTP_400_BAD_REQUEST)

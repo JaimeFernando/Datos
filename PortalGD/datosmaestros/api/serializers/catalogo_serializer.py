@@ -26,6 +26,6 @@ class CatCatalogoSerializer(serializers.ModelSerializer):
             'puestocustodio':instance.puestocustodio,
             'nombreduenio':instance.nombreduenio,
             'puestoduenio':instance.puestoduenio,
-            'esactivo': instance.esactivo,
+            'is_active': instance.is_active,
             'updated_at': instance.updated_at,
         }

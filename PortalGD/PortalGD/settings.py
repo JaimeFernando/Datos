@@ -11,11 +11,19 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
+import os
+
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -98,23 +106,22 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'PortalGD.wsgi.application'
-
+BRANCH = env("BRANCH")
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
 DATABASES = {
     "default": {
-        "ENGINE": "mssql",
-        "NAME": "GobDatos",
-        "USER": "userIgtoFernando",
-        "PASSWORD": "eFn^@j1Zr8CX",
-        "HOST": "172.31.4.45",
-        "PORT": "1433",
-        "OPTIONS": {
-            "driver": "ODBC Driver 17 for SQL Server",
-            "extra_params": "schema=cat,dbo,portal", 
-        },
+        "ENGINE": env("ENGINE_DB"),
+        "NAME": env("NAME_DB"),
+        "USER": env("USER_DB"),
+        "PASSWORD": env("PASSWORD_DB"),
+        "HOST": env("HOST_DB"),
+        "PORT": env("PORT_DB"),
+        # "OPTIONS": {
+        #     "driver": "ODBC Driver 17 for SQL Server",
+        #     "extra_params": "schema=cat,dbo,portal", 
+        # },
     }
 }
 
