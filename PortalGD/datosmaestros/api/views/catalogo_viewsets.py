@@ -3,11 +3,13 @@ from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
 
+
 from user.authentication_mixins import Authentication
 
 from datosmaestros.api.serializers.catalogo_serializer import CatCatalogoSerializer
 
 class CatCatalogoViewSet(viewsets.ModelViewSet):
+    
     serializer_class = CatCatalogoSerializer
     
     #Utilizando el Metodo Get podemos listar los Registros
